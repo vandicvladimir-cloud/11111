@@ -133,7 +133,61 @@ header p {
     margin-top: 8px;
 }
 
-/* Таблица прайс-листа */
+/* Сетка фотографий (Галерея) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: #f8fafc;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+}
+
+.gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+
+.img-wrapper {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Контроль размера фото: contain вмещает фото целиком без зума */
+.gallery-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.gallery-item p {
+    padding-top: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-main);
+    text-align: center;
+}
+
+/* Таблица услуг */
 .section-title {
     font-size: 22px;
     font-weight: 800;
@@ -166,6 +220,7 @@ td {
     padding: 18px;
     border-bottom: 1px solid var(--border-color);
     font-size: 15px;
+    vertical-align: middle;
 }
 
 tr:last-child td {
@@ -174,6 +229,21 @@ tr:last-child td {
 
 tr:hover td {
     background: #f8fafc;
+}
+
+.tech-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.table-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 
 .tech-name {
@@ -217,9 +287,28 @@ footer {
             <p class="cta-subtext">Звоните прямо сейчас — подберем технику и согласуем время</p>
         </div>
 
-        <!-- Прайс-лист -->
+        <!-- Карточка с галереей фото -->
         <div class="card">
-            <h2 class="section-title">🚜 Прайс-лист работ</h2>
+            <h2 class="section-title">📷 Наша техника</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="img-wrapper">
+                        <img src="/static/loader.jpg" alt="Телескопический погрузчик" onclick="window.open(this.src)">
+                    </div>
+                    <p>Телескопический погрузчик</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-wrapper">
+                        <img src="/static/excavator.jpg" alt="Мини-экскаватор" onclick="window.open(this.src)">
+                    </div>
+                    <p>Мини-экскаватор</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Услуги -->
+        <div class="card">
+            <h2 class="section-title">🚜 Услуги</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -230,11 +319,21 @@ footer {
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="tech-name">Телескопический погрузчик</td>
+                            <td>
+                                <div class="tech-cell">
+                                    <img src="/static/loader.jpg" alt="Телескопический погрузчик" class="table-thumb">
+                                    <span class="tech-name">Телескопический погрузчик</span>
+                                </div>
+                            </td>
                             <td class="tech-desc">Грузоподъемность 3–4 т, вылет стрелы 13–16 м</td>
                         </tr>
                         <tr>
-                            <td class="tech-name">Мини-экскаватор</td>
+                            <td>
+                                <div class="tech-cell">
+                                    <img src="/static/excavator.jpg" alt="Мини-экскаватор" class="table-thumb">
+                                    <span class="tech-name">Мини-экскаватор</span>
+                                </div>
+                            </td>
                             <td class="tech-desc">Копка траншей, работа в стесненных условиях и на сложных участках</td>
                         </tr>
                         <tr>
